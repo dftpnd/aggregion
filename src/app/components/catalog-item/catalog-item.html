@@ -1,0 +1,59 @@
+<md-list flex>
+    <md-list-item class="md-1-line">
+        <h1 ng-bind="catalogItem.info.title.default"></h1>
+    </md-list-item>
+
+    <md-list-item>
+        <img ng-src="{{catalogItem.getCover()}}" height="200px" alt="todo"/>
+    </md-list-item>
+
+    <md-divider></md-divider>
+    <md-list-item class="md-1-line">
+        <div class="md-list-item-text" layout="column">
+            <table>
+                <tr ng-repeat="(key, value) in catalogItem.info.options">
+                    <td><h2 class="md-title">{{key}}</h2></td>
+                    <td style="padding-left: 20px">{{value}}</td>
+                </tr>
+            </table>
+        </div>
+    </md-list-item>
+    <md-divider></md-divider>
+    <md-list-item class="md-1-line">
+        <div class="md-list-item-text" layout="column">
+            <h2 class="md-title">Description:</h2>
+            <p ng-bind="catalogItem.info.description.default"></p>
+        </div>
+    </md-list-item>
+    <md-divider></md-divider>
+    <div ng-if="catalogItem.info.tags.length">
+        <md-list-item class="md-1-line">
+            <md-chips ng-model="catalogItem.info.tags" readonly="true"></md-chips>
+        </md-list-item>
+        <md-divider></md-divider>
+    </div>
+    <md-list-item class="md-1-line md-no-proxy">
+        <div class="md-list-item-text" layout="column">
+            <h2 class="md-title">Bundles</h2>
+            <md-button class="md-raised" ng-href="{{catalogItem.urlBuilder('id')}}" > id </md-button>
+            <md-button class="md-raised" ng-href="{{catalogItem.urlBuilder('catalog')}}" > catalog </md-button>
+            <md-button class="md-raised" ng-href="{{catalogItem.urlBuilder('owner')}}" > owner </md-button>
+            <md-button class="md-raised" ng-href="{{catalogItem.urlBuilder('resourceId')}}" > resourceId </md-button>
+        </div>
+    </md-list-item>
+    <md-divider></md-divider>
+    <div ng-if="catalogItem.info.platformSupport.length">
+        <md-list-item class="md-1-line">
+            <div class="md-list-item-text" layout="column">
+                <h2 class="md-title">Platforms support</h2>
+                <md-chips ng-model="catalogItem.info.platformSupport" readonly="true"></md-chips>
+            </div>
+        </md-list-item>
+        <md-divider></md-divider>
+    </div>
+</md-list>
+
+
+<div ng-if="catalogItem.loading" layout="row" layout-sm="column" layout-align="space-around">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
